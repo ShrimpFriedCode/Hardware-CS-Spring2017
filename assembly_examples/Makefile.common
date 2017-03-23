@@ -25,12 +25,14 @@ $(ELF) : $(OBJS)
 test : $(ELF)
 	qemu-system-arm  -cpu cortex-m3 -nographic \
                    -monitor null -serial null \
+                   -machine integratorcp \
                    -semihosting -kernel $<
 
 debug: $(ELF)
-	qemu-system-arm -cpu cortex-m3 -nographic -monitor null \
-                 -serial null -semihosting -kernel \
-                 $< -gdb tcp::51234 -S &
+	qemu-system-arm -cpu cortex-m3 -nographic \
+			-monitor null -serial null \
+ 	                -machine integratorcp  \
+			 -semihosting -kernel $< -gdb tcp::51234 -S &
 	arm-none-eabi-gdb $< --command=../main.gdb
 
 clean: 
