@@ -40,10 +40,11 @@
 #include <string.h>
 #include "test_functions.h"
 
-void main(void){
+int main(void){
   fib_test();
   gcd_test();
   abs_test();
+  return 0;
 } 
 
 /* main.c ends here */
