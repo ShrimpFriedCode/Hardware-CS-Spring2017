@@ -42,6 +42,7 @@
 #include "abs.h"
 #include "gcd.h"
 #include "abs.h"
+#include "fib.h"
 
 void abs_test(void) {
   int error_count=0;
@@ -66,7 +67,7 @@ void gcd_test(void) {
   for (i=1;i<100;i++) {
     for (j=1;j<100;j++) {
       if (gcd(i,j)!=gcd_c(i,j)) {
-  	printf("GCD Error: Input (%d,%d), Expected %d, Received %d\n",i,j,gcd_c(i,j),gcd(i,j));
+        printf("GCD Error: Input (%lu,%lu), Expected %d, Received %d\n",i,j,gcd_c(i,j),gcd(i,j));
   	error_count++;
       }
     }
