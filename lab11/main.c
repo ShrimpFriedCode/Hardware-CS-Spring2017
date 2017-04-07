@@ -58,10 +58,16 @@ struct fmtck {
   uint16_t wBitsPerSample;
 };
 
-void readckhd(unsigned char * data, struct ckhd * hd, uint32_t ckID) {
+struct ckhd readckhd2(unsigned char * data, struct ckhd * hd, uint32_t ckID);
+
+struct ckhd readckhd2(unsigned char * data, struct ckhd * hd, uint32_t ckID) {
   hd = (struct ckhd * ) data;
-  if (ckID && (ckID != hd -> ckID))
+  printf("ckID: %x\n",ckID );
+  printf("hd->ckID: %x\n", hd->ckID);
+  printf("cksize: %i\n",hd->cksize);
+  if (ckID && (ckID != hd->ckID))
     exit(-1);
+  return *hd;
 }
 
 int main(void) {
@@ -87,7 +93,7 @@ int main(void) {
   uint32_t waveid;
   struct fmtck fck;
 
-  readckhd(datapos, & hd, 'FFIR');
+  hd  = readckhd2(datapos, &hd, 'FFIR');
   datapos += sizeof(struct ckhd);
 
   waveid = * ((uint32_t * ) datapos);
@@ -95,18 +101,11 @@ int main(void) {
   if (waveid != 'EVAW')
     return -1;
 
-  readckhd(datapos, & hd, ' tmf');
+  hd = readckhd2(datapos, &hd, ' tmf');
   datapos += sizeof(struct ckhd);
 
   fck = * ((struct fmtck * ) datapos);
   datapos += sizeof(fck);
-
-  // skip over extra info
-
-  if (hd.cksize != 16) {
-    printf("extra header info %d\n", hd.cksize - 16);
-    datapos += hd.cksize - 16;
-  }
 
   printf("audio format 0x%x\n", fck.wFormatTag);
   printf("channels %d\n", fck.nChannels);
@@ -118,9 +117,8 @@ int main(void) {
   // now skip all non-data chunks !
 
   while (1) {
-    readckhd(datapos, & hd, 0);
+    hd = readckhd2(datapos, &hd, 0);
     datapos += sizeof(struct ckhd);
-
     if (hd.ckID == 'atad')
       break;
     datapos += hd.cksize;
