@@ -60,7 +60,7 @@ struct fmtck {
 
 void readckhd(unsigned char * data, struct ckhd * hd, uint32_t ckID) {
   hd = (struct ckhd * ) data;
-  if (ckID && (ckID != hd - > ckID))
+  if (ckID && (ckID != hd -> ckID))
     exit(-1);
 }
 
@@ -158,13 +158,12 @@ int main(void) {
   while (1);
 }
 
-#
-ifdef USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 void assert_failed(uint8_t * file, uint32_t line) {
   /* Infinite loop */
   /* Use GDB to find out why we're here */
   while (1);
-}#
-endif
+}
+#endif
 
 /* main.c ends here */
