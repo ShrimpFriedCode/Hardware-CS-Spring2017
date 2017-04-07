@@ -4,7 +4,7 @@
  * Description: 
  * Author: 
  * Maintainer: 
- * Created: Thu Jan 10 11:23:43 2013
+ * Created: 
  * Last-Updated: 
  *           By: 
  *     Update #: 0
@@ -129,8 +129,6 @@ int main(void) {
   printf("Samples %d\n", hd.cksize);
 
   // Play it !
-
-  //audioplayerInit(fck.nSamplesPerSec);
 
   memcpy(Audiobuf, datapos, AUDIOBUFSIZE);
   datapos += AUDIOBUFSIZE;
