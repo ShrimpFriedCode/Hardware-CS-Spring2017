@@ -42,7 +42,7 @@ extern uint8_t Audiobuf[AUDIOBUFSIZE];
 extern int audioplayerHalf;
 extern int audioplayerWhole;
 
-extern unsigned char __500hz_16_wav[];
+extern unsigned char __500hz_8_wav[];
 
 struct ckhd {
   uint32_t ckID;
@@ -74,7 +74,7 @@ int main(void) {
 
   unsigned int retval;
   int bytesread;
-  unsigned char * datapos = __500hz_16_wav;
+  unsigned char * datapos = __500hz_8_wav;
 
   setvbuf(stdin, NULL, _IONBF, 0);
   setvbuf(stdout, NULL, _IONBF, 0);
@@ -138,13 +138,15 @@ int main(void) {
       if (next < AUDIOBUFSIZE / 2)
         bzero(Audiobuf, AUDIOBUFSIZE / 2);
       memcpy(Audiobuf, datapos, next);
+      datapos += next;
       hd.cksize -= next;
       audioplayerHalf = 0;
     }
     if (audioplayerWhole) {
       if (next < AUDIOBUFSIZE / 2)
-        bzero( & Audiobuf[AUDIOBUFSIZE / 2], AUDIOBUFSIZE / 2);
-      memcpy( & Audiobuf[AUDIOBUFSIZE / 2], datapos, next);
+        bzero(&Audiobuf[AUDIOBUFSIZE / 2], AUDIOBUFSIZE / 2);
+      memcpy(&Audiobuf[AUDIOBUFSIZE / 2], datapos, next);
+      datapos += next;
       hd.cksize -= next;
       audioplayerWhole = 0;
     }
