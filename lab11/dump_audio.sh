@@ -2,13 +2,13 @@
 
 # The WAV file must be 8-bit audio:
 # 
-# zpmarvel@phyllite ~/src/Spring2017-lab-private/lab11 ±master⚡ » file thermo.wav
+# zpmarvel@phyllite ~/src/Spring2017-lab/lab11 $ file thermo.wav
 #   thermo.wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 8 bit, mono 11025 Hz
-# zpmarvel@phyllite ~/src/Spring2017-lab-private/lab11 ±master⚡ » file thermo-short-8.wav 
+# zpmarvel@phyllite ~/src/Spring2017-lab/lab11 $ file thermo-short-8.wav 
 #   thermo-short-8.wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 8 bit, mono 11025 Hz
-# zpmarvel@phyllite ~/src/Spring2017-lab-private/lab11 ±master⚡ » file 500hz.wav
+# zpmarvel@phyllite ~/src/Spring2017-lab/lab11 $ file 500hz.wav
 #   500hz.wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 16 bit, mono 44100 Hz
-# zpmarvel@phyllite ~/src/Spring2017-lab-private/lab11 ±master⚡ » file 500hz-8.wav
+# zpmarvel@phyllite ~/src/Spring2017-lab/lab11 $ file 500hz-8.wav
 #   500hz-8.wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 8 bit, mono 44100 Hz
 
 
